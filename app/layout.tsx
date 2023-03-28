@@ -13,8 +13,8 @@ const interFontFamily = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children } : {children : React.ReactNode}) {
     return (
-      <html lang="en" className={interFontFamily.className}>
-        <body className="container">
+      <html lang="tr" className={interFontFamily.className}>
+        <body>
           <Header/>
           <div className="content">{children}</div>
           <Footer/>
