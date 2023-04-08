@@ -1,32 +1,31 @@
 import styles from "./index.module.scss";
-import { Formik } from 'formik';
+import {Formik} from 'formik';
 import * as Yup from "yup";
 import Cookies from "universal-cookie";
-import { message } from 'antd';
+import {message} from 'antd';
 import Link from "next/link";
-import { useRouter } from 'next/navigation';
+import {useRouter} from 'next/navigation';
 
 const cookies = new Cookies();
-
 
 
 interface Response {
     accessToken?: string;
     status: boolean;
     errorMessage?: string;
-    data?:object;
-}
-interface data {
-    firstName:string;
-    isActive:boolean;
-    lastName:string;
-    mail:string;
-    password:string;
-    _v?:number;
-    _id:number;
-    status:boolean
+    data?: object;
 }
 
+interface data {
+    firstName: string;
+    isActive: boolean;
+    lastName: string;
+    mail: string;
+    password: string;
+    _v?: number;
+    _id: number;
+    status: boolean
+}
 
 
 const Register = () => {
@@ -48,48 +47,47 @@ const Register = () => {
             onSubmit={(values) => {
                 fetch("https://e-undefined-service.onrender.com/auth/register", {
                     method: "POST",
-                    body: JSON.stringify({ mail: values.email, password: values.password, firstName: values.name, lastName: values.surname }),
-                    headers: { "Content-Type": "application/json" }
+                    body: JSON.stringify({
+                        mail: values.email,
+                        password: values.password,
+                        firstName: values.name,
+                        lastName: values.surname
+                    }),
+                    headers: {"Content-Type": "application/json"}
                 })
-                    .then(async (data) => {
-                        const getData: Response = await data.json()
-                        return getData;
-                    }).then((response) => {
-                        console.log('response :>> ', response);
-                        if (response.status === true && response?.data) {
-                            cookies.set("accessToken", response.accessToken)
-                            message.open({
-                                type: 'success',
-                                content: 'Giriş başarılı',
-                            });
-                            router.replace("/login");
-                        } else if (response.status === false && response.errorMessage === "User already exist") {
-                            message.open({
-                                type: 'warning',
-                                content: 'Hesabınız zaten var lütfen giriş yapınız.'
-                            });
-                        }
-
-                    }).catch((response) => {
-                        console.log("response !catch", response)
-                        if (response.status === false) {
-                            message.open({
-                                type: 'warning',
-                                content: 'Giriş Başarısız.'
-                            });
-                        }
-                    })
+                    .then(async (data) => data.json()).then((response) => {
+                    if (response.status === true && response?.data) {
+                        message.open({
+                            type: 'success',
+                            content: 'Kayıt başarılı',
+                        });
+                        router.replace("/login");
+                    } else if (response.status === false && response.errorMessage === "User already exist") {
+                        message.open({
+                            type: 'warning',
+                            content: 'Hesabınız zaten var lütfen giriş yapınız.'
+                        });
+                    }
+                }).catch((response) => {
+                    console.log("response !catch", response)
+                    if (response.status === false) {
+                        message.open({
+                            type: 'warning',
+                            content: 'Kayıt Başarısız.'
+                        });
+                    }
+                })
             }}
         >
             {({
-                values,
-                errors,
-                handleChange,
-                handleSubmit,
-                handleReset,
-                isSubmitting,
-                touched,
-            }) => (
+                  values,
+                  errors,
+                  handleChange,
+                  handleSubmit,
+                  handleReset,
+                  isSubmitting,
+                  touched,
+              }) => (
                 <div className={styles.registerContainer}>
                     <div className={styles.registerWrapper}>
                         <div className={styles.registerTitle}>ÜYE OL</div>
@@ -145,7 +143,9 @@ const Register = () => {
                             <button type="submit" disabled={isSubmitting} className={styles.registerBtn}>ÜYE OL</button>
                             <div className={styles.shortInfo}>
                                 <div className={styles.info}>Zaten hesabınız var mı?</div>
-                                <Link href="/login"><div className={styles.infoTwo}>Üye Girişi</div></Link>
+                                <Link href="/login">
+                                    <div className={styles.infoTwo}>Üye Girişi</div>
+                                </Link>
                             </div>
                         </form>
                     </div>
