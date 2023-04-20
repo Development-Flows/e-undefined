@@ -16,9 +16,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
         <html lang="tr" className={interFontFamily.className}>
         <body>
         <StoreProvider>
-            <Header/>
             <div className="content">{children}</div>
-            <Footer/>
         </StoreProvider>
         </body>
         </html>
