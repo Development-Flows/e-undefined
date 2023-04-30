@@ -2,7 +2,7 @@
 import {Form, Input, Button} from 'antd';
 import {useRouter} from 'next/navigation';
 import {userLoginHandler} from "@/store/user";
-import { useSelector,useDispatch} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 
 export default function Login() {
     const {push} = useRouter()
@@ -10,9 +10,9 @@ export default function Login() {
     const {loading} = useSelector(state => state.user)
     const onFinish = (values) => {
         //store.dispatch(userLoginHandler(values.email,values.password))
-        const loginData={mail:values.email,password:values.password}
-        dispatch(userLoginHandler(loginData)).then(({payload})=>{
-            if(payload.status===true) push("/admin/panel")
+        const loginData = {mail: values.email, password: values.password}
+        dispatch(userLoginHandler(loginData)).then(({payload}) => {
+            if (payload.status === true) push("/admin/panel")
         })
     };
 
