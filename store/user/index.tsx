@@ -36,7 +36,7 @@ export const userLoginHandler = createAsyncThunk<IUserLoginResponse,
     "user/getProfile",
     async ({mail, password}: IUserLoginHandler, ThunkAPI) => {
         try {
-            const {status, accessToken, errorMessage}: IUserLoginResponse = await axios.post('/auth/login', {
+            const {status, accessToken, errorMessage}: IUserLoginResponse = await axios.post('/auth/user/login', {
                 mail,
                 password
             });
