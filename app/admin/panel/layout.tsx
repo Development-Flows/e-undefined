@@ -33,7 +33,7 @@ export default function PanelLayout({children}: { children: React.ReactNode }) {
             getItem('Ürün Listesi', 'sub2_2'),
         ]),
         getItem('Kategori Yönetimi', 'sub3', <MenuOutlined/>, [
-            getItem('Kategori Ekleme', 'sub3_1'),
+            getItem(<Link href={"/admin/panel/categories/add"} >Kategori Ekleme</Link>, 'sub3_1'),
             getItem('Kategori Listesi', 'sub3_2'),
         ]),
         getItem("Sipariş Yönetimi", "sub4", <ShoppingCartOutlined/>, [
