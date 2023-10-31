@@ -30,7 +30,7 @@ export default function PanelLayout({children}: { children: React.ReactNode }) {
         getItem(<Link href={"/admin/panel"}>Anasayfa</Link>, 'sub1',<HomeOutlined /> ),
         getItem('Ürün Yönetimi', 'sub2', <AppstoreOutlined/>, [
             getItem(<Link href={"/admin/panel/products/add"}>Ürün Ekleme</Link>, 'sub2_1'),
-            getItem('Ürün Listesi', 'sub2_2'),
+            getItem(<Link href={"/admin/panel/products/list"}>Ürün Listesi</Link>, 'sub2_2'),
         ]),
         getItem('Kategori Yönetimi', 'sub3', <MenuOutlined/>, [
             getItem('Kategori Ekleme', 'sub3_1'),
